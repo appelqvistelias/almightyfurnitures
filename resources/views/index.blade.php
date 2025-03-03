@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Almighty Furnitures</title>
-</head>
-
-<body>
-    <h1>Hello Furniture buyers!</h1>
-</body>
-
-</html>
+<x-app-layout>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <h1 class="text-4xl font-bold mb-6 text-center">Welcome!</h1>
+                    <p class="text-center">Placeholder for products in the future</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
