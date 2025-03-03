@@ -1,8 +1,7 @@
-
 <?php
 
 use App\Http\Middleware\AdminMiddleware;
-use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -46,7 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::middleware([AdminMiddleware::class])->prefix('admin')->group(function () {
-        Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
+        Route::get('/products', [AdminProductController::class, 'index'])->name('admin.products.index');
     });
 });
 
