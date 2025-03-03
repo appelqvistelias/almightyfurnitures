@@ -31,6 +31,7 @@ Route::controller(ProductController::class)
 
         Route::delete('/{product}', 'destroy')->name('destroy');
     });
+
 Route::get('/', function () {
     return view('index');
 })->name('home');
