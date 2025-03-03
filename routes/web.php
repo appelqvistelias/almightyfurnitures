@@ -6,8 +6,9 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 
-Route::view('/', 'home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::resource('categories', CategoryController::class);
 
@@ -31,10 +32,6 @@ Route::controller(ProductController::class)
 
         Route::delete('/{product}', 'destroy')->name('destroy');
     });
-
-Route::get('/', function () {
-    return view('index');
-})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
