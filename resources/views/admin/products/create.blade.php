@@ -13,12 +13,7 @@
 
                     <x-errors />
 
-                    <form method="post" action="{{ route('products.store') }}" class="space-y-4">
-                        <x-products.form />
-                        <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                            Save
-                        </button>
-                    </form>
+                    <x-products.form />
                 </div>
             </div>
         </div>

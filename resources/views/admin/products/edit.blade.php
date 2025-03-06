@@ -13,13 +13,7 @@
 
                     <x-errors />
 
-                    <form method="post" action="{{ route('products.update', $product) }}" class="space-y-4">
-                        @method('PATCH')
-                        <x-products.form :product="$product" />
-                        <button class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
-                            Update
-                        </button>
-                    </form>
+                    <x-products.form :product="$product" />
                 </div>
             </div>
         </div>
