@@ -13,7 +13,7 @@
 
                     <x-errors />
 
-                    <x-products.form />
+                    <x-products.create-form />
                 </div>
             </div>
         </div>
