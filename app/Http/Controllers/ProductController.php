@@ -36,6 +36,7 @@ class ProductController extends Controller
 
         return view('admin.products.show', compact('product'));
     }
+
     public function edit(Product $product)
     {
         return view('admin.products.edit', compact('product'));
