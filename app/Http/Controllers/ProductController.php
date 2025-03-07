@@ -24,6 +24,7 @@ class ProductController extends Controller
 
     public function store(SaveProductRequest $request)
     {
+        $imagePath = $request->file('images')->store('images', 'public');   ///// NEW IMAGES ----- ///////
 
         $product =  Product::create($request->validated());
 
@@ -43,9 +44,20 @@ class ProductController extends Controller
 
     public function update(SaveProductRequest $request, Product $product)
     {
+
+
         $product->update($request->validated());
         return redirect()->route('products.show', $product)
             ->with('status', 'Product updated');
+
+        if ($request->hasFile('image')) {    //////-----IMAGES
+            try {
+                $imagePath = $request->file('image')->store('images', 'public');
+                $validatedData['image'] = $imagePath;
+            } catch (\Exception $e) {
+                return back()->withErrors(['image' => 'Failed to upload image. Please try again.']);
+            }
+        }   //////-------end IMAGES
     }
 
     public function destroy(Product $product)

@@ -11,11 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name', length: 100);
+            $table->string('image')->nullable(); ///-----new for images.
             $table->text('description')->nullable();
-            $table->decimal('size', total: 8, places: 2)->default(0);
+            $table->integer('height')->nullable();
+            $table->integer('width')->nullable();
+            $table->integer('depth')->nullable();
+            $table->decimal('price', total: 8, places: 2)->default(0);
+            $table->decimal('weight', total: 8, places: 2)->default(0);
+            $table->string('material', length: 100);
+            $table->string('colour', length: 100);
+            $table->string('brand', length: 100);
+
             $table->timestamps();
         });
     }
