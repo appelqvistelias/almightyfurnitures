@@ -12,14 +12,14 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return view('products.index', [
+        return view('admin.products.index', [
             'products' => Product::orderBy('created_at')->paginate(3)
         ]);
     }
 
     public function create()
     {
-        return view('products.create');
+        return view('admin.products.create');
     }
 
     public function store(SaveProductRequest $request)
@@ -28,18 +28,19 @@ class ProductController extends Controller
 
         $product =  Product::create($request->validated());
 
-        return redirect()->route('products.show', $product)
+        return redirect()->route('admin.products.show', $product)
             ->with('status', 'Product created');
     }
 
     public function show(Product $product)
     {
 
-        return view('products.show', compact('product'));
+        return view('admin.products.show', compact('product'));
     }
+
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        return view('admin.products.edit', compact('product'));
     }
 
     public function update(SaveProductRequest $request, Product $product)
@@ -47,7 +48,7 @@ class ProductController extends Controller
 
 
         $product->update($request->validated());
-        return redirect()->route('products.show', $product)
+        return redirect()->route('admin.products.show', $product)
             ->with('status', 'Product updated');
 
         if ($request->hasFile('image')) {    //////-----IMAGES
@@ -64,7 +65,7 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return redirect()->route('products.index')
+        return redirect()->route('admin.products.index')
             ->with('status', 'Product deleted');
     }
 }
