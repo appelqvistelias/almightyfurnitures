@@ -24,7 +24,15 @@ class SaveProductRequest extends FormRequest
         return [
             'name' => 'required | max:100',
             'description' => 'nullable | min:3',
-            'size' => 'required | decimal:0,2 | max:100'
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validation for image
+            'height' => 'required|integer|min:0|max:1000',
+            'width' => 'required|integer|min:0|max:1000',
+            'depth' => 'required|integer|min:0|max:1000',
+            'price' => 'required | decimal:0,2 | max:100',
+            'weight' => 'required | decimal:0,2 | max:100',
+            'material' => 'required | max:100',
+            'colour' => 'required | max:50',
+            'brand' => 'required | max:100',
         ];
     }
 }
