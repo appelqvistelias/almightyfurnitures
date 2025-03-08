@@ -25,6 +25,7 @@ class SaveProductRequest extends FormRequest
             'name' => 'required|max:100',
             'description' => 'nullable|min:10',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'brand' => 'required|max:100',
             'price' => 'required|decimal:0,2|min:0',
             'height' => 'required|integer|min:0|max:1000',
             'width' => 'required|integer|min:0|max:1000',
@@ -32,7 +33,6 @@ class SaveProductRequest extends FormRequest
             'weight' => 'required|decimal:0,2|min:0|max:1000',
             'material' => 'required|max:100',
             'colour' => 'required|max:50',
-            'brand' => 'required|max:100',
         ];
     }
 }
