@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ $product->name }}
-        </h2>
+        <h1 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Details') }}
+        </h1>
     </x-slot>
 
     <div class="py-12">
@@ -10,23 +10,33 @@
             <div class="bg-white shadow-xl rounded-lg overflow-hidden">
                 <div class="p-6 text-gray-900">
                     <!-- Product Name -->
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">{{ $product->name }}</h3>
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+                        {{ $product->name }}
+                    </h2>
 
                     <!-- Image Display -->
                     @if($product->image)
                     <div class="mb-6">
-                        <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" class="rounded-lg w-32 mx-auto shadow-md">
+                        <img
+                            src="{{ Storage::url($product->image) }}"
+                            alt="{{ $product->name }}"
+                            class="rounded-lg w-full max-w-md mx-auto shadow-md"
+                            aria-hidden="true">
                     </div>
                     @endif
 
                     <!-- Description -->
                     <div class="mb-6">
-                        <p class="text-gray-700 text-lg"><strong>Description:</strong> {{ $product->description }}</p>
+                        <p class="text-gray-700 text-lg">
+                            <strong>Description:</strong> {{ $product->description }}
+                        </p>
                     </div>
 
                     <!-- Price -->
                     <div class="flex items-center justify-between mb-4">
-                        <p class="text-2xl font-semibold text-green-600">{{ number_format($product->price, 2) }} SEK</p>
+                        <p class="text-2xl font-semibold text-green-600">
+                            {{ number_format($product->price, 2) }} SEK
+                        </p>
                     </div>
 
                     <!-- Dimensions (Height x Width x Depth) -->
@@ -44,34 +54,55 @@
                     @endif
 
                     <!-- Weight -->
-                    <p class="text-gray-700 mb-4"><strong>Weight:</strong> {{ $product->weight }} kg</p>
+                    <p class="text-gray-700 mb-4">
+                        <strong>Weight:</strong> {{ $product->weight }} kg
+                    </p>
 
                     <!-- Material -->
-                    <p class="text-gray-700 mb-4"><strong>Material:</strong> {{ $product->material }}</p>
+                    <p class="text-gray-700 mb-4">
+                        <strong>Material:</strong> {{ $product->material }}
+                    </p>
 
                     <!-- Colour -->
-                    <p class="text-gray-700 mb-4"><strong>Colour:</strong> {{ $product->colour }}</p>
+                    <p class="text-gray-700 mb-4">
+                        <strong>Colour:</strong> {{ $product->colour }}
+                    </p>
 
                     <!-- Brand -->
-                    <p class="text-gray-700 mb-6"><strong>Brand:</strong> {{ $product->brand }}</p>
+                    <p class="text-gray-700 mb-6">
+                        <strong>Brand:</strong> {{ $product->brand }}
+                    </p>
 
                     <!-- Actions -->
-                    <div class="flex justify-end space-x-4">
-                        <a href="{{ route('products.index') }}" class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 flex items-center space-x-2">
+                    <div class="flex justify-start space-x-4">
+                        <!-- Back to Products Button -->
+                        <a
+                            href="{{ route('products.index') }}"
+                            class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 flex items-center space-x-2 transition duration-300"
+                            aria-label="Back to products">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                             </svg>
                             <span>Back to Products</span>
                         </a>
 
-                        <a href="{{ route('products.edit', $product->id) }}" class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center space-x-2">
+                        <!-- Edit Button -->
+                        <a
+                            href="{{ route('products.edit', $product->id) }}"
+                            class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex items-center space-x-2 transition duration-300"
+                            aria-label="Edit {{ $product->name }}">
                             <span>Edit</span>
                         </a>
 
+                        <!-- Delete Button -->
                         <form method="post" action="{{ route('products.destroy', $product) }}">
                             @csrf
                             @method('DELETE')
-                            <button class="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 flex items-center space-x-2">
+                            <button
+                                type="submit"
+                                class="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 flex items-center space-x-2 transition duration-300"
+                                aria-label="Delete {{ $product->name }}"
+                                onclick="return confirm('Are you sure you want to delete this product?')">
                                 <span>Delete</span>
                             </button>
                         </form>
