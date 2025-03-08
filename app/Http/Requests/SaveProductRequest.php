@@ -22,17 +22,17 @@ class SaveProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required | max:100',
-            'description' => 'nullable | min:3',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validation for image
+            'name' => 'required|max:100',
+            'description' => 'nullable|min:10',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'price' => 'required|decimal:0,2|min:0',
             'height' => 'required|integer|min:0|max:1000',
             'width' => 'required|integer|min:0|max:1000',
             'depth' => 'required|integer|min:0|max:1000',
-            'price' => 'required | decimal:0,2 | max:100',
-            'weight' => 'required | decimal:0,2 | max:100',
-            'material' => 'required | max:100',
-            'colour' => 'required | max:50',
-            'brand' => 'required | max:100',
+            'weight' => 'required|decimal:0,2|min:0|max:1000',
+            'material' => 'required|max:100',
+            'colour' => 'required|max:50',
+            'brand' => 'required|max:100',
         ];
     }
 }
