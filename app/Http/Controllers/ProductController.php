@@ -4,16 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use Ramsey\Uuid\Type\Decimal;
 use App\Http\Requests\SaveProductRequest;
-
 
 class ProductController extends Controller
 {
     public function index()
     {
         return view('admin.products.index', [
-            'products' => Product::orderBy('created_at')->paginate(3)
+            'products' => Product::orderBy('created_at')->paginate(6)
         ]);
     }
 
@@ -24,9 +22,14 @@ class ProductController extends Controller
 
     public function store(SaveProductRequest $request)
     {
-        $imagePath = $request->file('images')->store('images', 'public');   ///// NEW IMAGES ----- ///////
+        $validated = $request->validated();
 
-        $product =  Product::create($request->validated());
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $validated['image'] = $imagePath;
+        }
+
+        $product = Product::create($validated);
 
         return redirect()->route('admin.products.show', $product)
             ->with('status', 'Product created');
@@ -34,7 +37,6 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-
         return view('admin.products.show', compact('product'));
     }
 
@@ -45,20 +47,21 @@ class ProductController extends Controller
 
     public function update(SaveProductRequest $request, Product $product)
     {
+        $validated = $request->validated();
 
+        if ($request->hasFile('image')) {
+            if ($product->image && file_exists(storage_path('app/public/' . $product->image))) {
+                unlink(storage_path('app/public/' . $product->image));
+            }
 
-        $product->update($request->validated());
+            $imagePath = $request->file('image')->store('images', 'public');
+            $validated['image'] = $imagePath;
+        }
+
+        $product->update($validated);
+
         return redirect()->route('admin.products.show', $product)
             ->with('status', 'Product updated');
-
-        if ($request->hasFile('image')) {    //////-----IMAGES
-            try {
-                $imagePath = $request->file('image')->store('images', 'public');
-                $validatedData['image'] = $imagePath;
-            } catch (\Exception $e) {
-                return back()->withErrors(['image' => 'Failed to upload image. Please try again.']);
-            }
-        }   //////-------end IMAGES
     }
 
     public function destroy(Product $product)
