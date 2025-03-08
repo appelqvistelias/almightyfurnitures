@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Products') }}
+            {{ __('Welcome Administrator') }}
         </h2>
     </x-slot>
 
@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-between items-center mb-6">
-                        <h1 class="text-2xl font-bold">Product List</h1>
+                        <h1 class="text-2xl font-bold">Products</h1>
                         <a href="{{ route('products.create') }}" class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">
                             New Product
                         </a>
@@ -44,11 +44,29 @@
                             <p class="text-gray-900 font-semibold text-lg mt-2">{{ number_format($product->price, 2) }} SEK</p>
                             @endif
 
-                            <!-- More Info Button -->
-                            <div class="mt-4">
+                            <!-- Buttons -->
+                            <div class="mt-4 flex space-x-2">
+                                <!-- More Info Button -->
                                 <a href="{{ route('products.show', $product->id) }}" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
                                     More Info
                                 </a>
+
+                                <!-- Edit Button -->
+                                <a href="{{ route('products.edit', $product->id) }}" class="px-4 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-500 transition duration-300">
+                                    Edit
+                                </a>
+
+                                <!-- Delete Button -->
+                                <form method="POST" action="{{ route('products.destroy', $product->id) }}" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button
+                                        type="submit"
+                                        class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-300"
+                                        onclick="return confirm('Are you sure you want to delete this product?')">
+                                        Delete
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         @endforeach
