@@ -11,6 +11,21 @@
             class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none" required aria-describedby="name-description">
     </div>
 
+    <!-- Category Input -->
+    <div class="flex flex-col">
+        <label for="category_id" class="text-sm font-semibold text-gray-700 mb-2">Category</label>
+        <select name="category_id" id="category_id" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none" required>
+            <option value="" disabled selected>Select a category</option>
+            @foreach($categories as $category)
+            <option value="{{ $category->id }}"
+                {{ old('category_id', $product->category_id) == $category->id ? 'selected' : '' }}>
+                {{ $category->name }}
+            </option>
+            @endforeach
+        </select>
+    </div>
+
+
     <!-- Description Textarea -->
     <div class="flex flex-col">
         <label for="description" class="text-sm font-semibold text-gray-700 mb-2">Description</label>
