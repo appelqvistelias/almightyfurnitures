@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('colour', length: 100);
             $table->string('brand', length: 100);
 
+            $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
