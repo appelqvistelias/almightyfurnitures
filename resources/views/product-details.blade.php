@@ -48,11 +48,18 @@
                     </div>
 
                     <!-- Dimensions (Height x Width x Depth) -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                        <p class="text-gray-700"><strong>Height:</strong> {{ $product->height }} cm</p>
-                        <p class="text-gray-700"><strong>Width:</strong> {{ $product->width }} cm</p>
-                        <p class="text-gray-700"><strong>Depth:</strong> {{ $product->depth }} cm</p>
+                    @if($product->height || $product->width || $product->depth)
+                    <div class="mb-4">
+                        <p class="text-gray-700">
+                            <strong>Dimensions (H, W, D):</strong>
+                            @if($product->height){{ $product->height }} cm @endif
+                            @if($product->height && $product->width) x @endif
+                            @if($product->width){{ $product->width }} cm @endif
+                            @if(($product->height || $product->width) && $product->depth) x @endif
+                            @if($product->depth){{ $product->depth }} cm @endif
+                        </p>
                     </div>
+                    @endif
 
                     <!-- Weight -->
                     <p class="text-gray-700 mb-4"><strong>Weight:</strong> {{ $product->weight }} kg</p>
