@@ -14,20 +14,22 @@
                         <h2 class="text-2xl font-bold">Our furnitures</h2>
                     </header>
 
+                    @if ($products->isEmpty())
+                    <p class="text-gray-500 text-center">No products available at the moment.</p>
+                    @else
                     <!-- Product Grid -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         @foreach ($products as $product)
-                        <article class="p-4 border rounded-lg shadow-sm bg-gray-50 hover:shadow-lg transition duration-300">
+                        <article class="p-4 border rounded-lg shadow-sm bg-gray-50 hover:shadow-lg transition duration-300" key="{{ $product->id }}">
                             <!-- Product Image -->
-                            @if ($product->image)
                             <div class="mb-4">
                                 <img
-                                    src="{{ Storage::url($product->image) }}"
+                                    src="{{ $product->image ? Storage::url($product->image) : asset('images/default.jpg') }}"
                                     alt="{{ $product->name }}"
                                     class="w-full h-48 object-cover rounded-lg"
+                                    loading="lazy"
                                     aria-hidden="true">
                             </div>
-                            @endif
 
                             <!-- Product Name -->
                             <h3 class="text-lg font-semibold text-gray-900">
@@ -52,13 +54,15 @@
                                 <a
                                     href="{{ route('product.details', $product->id) }}"
                                     class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300"
-                                    aria-label="More info about {{ $product->name }}">
+                                    role="button"
+                                    tabindex="0">
                                     More Info
                                 </a>
                             </div>
                         </article>
                         @endforeach
                     </div>
+                    @endif
 
                     <!-- Pagination -->
                     <div class="mt-6">
