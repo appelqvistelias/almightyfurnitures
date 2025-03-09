@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Http\Requests\SaveProductRequest;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -19,8 +20,11 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('admin.products.create');
+        $categories = Category::all();
+
+        return view('admin.products.create', compact('categories'));
     }
+
 
     public function store(SaveProductRequest $request)
     {
@@ -31,11 +35,14 @@ class ProductController extends Controller
             $validated['image'] = $imagePath;
         }
 
+        $validated['category_id'] = $request->input('category_id');
+
         $product = Product::create($validated);
 
         return redirect()->route('admin.products.show', $product)
             ->with('status', 'Product created');
     }
+
 
     public function show(Product $product)
     {
