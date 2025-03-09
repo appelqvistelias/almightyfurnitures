@@ -82,9 +82,14 @@
                     </p>
 
                     <!-- Brand -->
-                    <p class="text-gray-700 mb-6">
+                    <p class="text-gray-700 mb-4">
                         <strong>Brand:</strong> {{ $product->brand }}
                     </p>
+
+                    <!-- Product Category -->
+                    @if($product->category)
+                    <p class="text-gray-700 mb-6"><strong>Category: </strong>{{ $product->category->name }}</p>
+                    @endif
 
                     <!-- Actions -->
                     <div class="flex justify-start space-x-4">
