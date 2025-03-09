@@ -9,6 +9,18 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white shadow-xl rounded-lg overflow-hidden">
                 <div class="p-6 text-gray-900">
+                    <!-- Back Button -->
+                    <div class="flex justify-start mb-6">
+                        <a
+                            href="{{ route('products.index') }}"
+                            class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 flex items-center space-x-2 transition duration-300"
+                            aria-label="Back to products">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                            <span>Back to Products</span>
+                        </a>
+                    </div>
                     <!-- Product Name -->
                     <h2 class="text-2xl font-semibold text-gray-800 mb-4">
                         {{ $product->name }}
@@ -16,11 +28,12 @@
 
                     <!-- Image Display -->
                     @if($product->image)
-                    <div class="mb-6">
+                    <div class="mb-6 flex justify-center">
                         <img
                             src="{{ Storage::url($product->image) }}"
                             alt="{{ $product->name }}"
-                            class="rounded-lg w-full max-w-md mx-auto shadow-md"
+                            class="rounded-lg w-full max-w-2xl h-auto object-contain shadow-lg"
+                            loading="lazy"
                             aria-hidden="true">
                     </div>
                     @endif
@@ -75,17 +88,6 @@
 
                     <!-- Actions -->
                     <div class="flex justify-start space-x-4">
-                        <!-- Back to Products Button -->
-                        <a
-                            href="{{ route('products.index') }}"
-                            class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 flex items-center space-x-2 transition duration-300"
-                            aria-label="Back to products">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                            </svg>
-                            <span>Back to Products</span>
-                        </a>
-
                         <!-- Edit Button -->
                         <a
                             href="{{ route('products.edit', $product->id) }}"
