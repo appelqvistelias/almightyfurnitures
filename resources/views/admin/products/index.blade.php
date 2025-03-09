@@ -51,11 +51,6 @@
                                     More Info
                                 </a>
 
-                                <!-- Edit Button -->
-                                <a href="{{ route('products.edit', $product->id) }}" class="px-4 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-500 transition duration-300">
-                                    Edit
-                                </a>
-
                                 <!-- Delete Button -->
                                 <form method="POST" action="{{ route('products.destroy', $product->id) }}" class="inline">
                                     @csrf
