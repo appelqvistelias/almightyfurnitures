@@ -5,15 +5,26 @@
     <!-- Name Input -->
     <div class="flex flex-col">
         <label for="name" class="text-sm font-semibold text-gray-700 mb-2">Name</label>
-        <input type="text" name="name" id="name" value="{{ old('name') }}"
+        <input type="text" name="name" id="name"
             class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none" required aria-describedby="name-description">
+    </div>
+
+    <!-- Category Input -->
+    <div class="flex flex-col">
+        <label for="category_id" class="text-sm font-semibold text-gray-700 mb-2">Category</label>
+        <select name="category_id" id="category_id" class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none" required>
+            <option value="" disabled selected>Select a category</option>
+            @foreach($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>
     </div>
 
     <!-- Description Textarea -->
     <div class="flex flex-col">
         <label for="description" class="text-sm font-semibold text-gray-700 mb-2">Description</label>
         <textarea name="description" id="description" rows="4"
-            class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none" aria-describedby="description-description">{{ old('description') }}</textarea>
+            class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none" aria-describedby="description-description"></textarea>
     </div>
 
     <!-- Image Input -->
@@ -26,56 +37,56 @@
     <!-- Brand Input -->
     <div class="flex flex-col">
         <label for="brand" class="text-sm font-semibold text-gray-700 mb-2">Brand</label>
-        <input type="text" name="brand" id="brand" value="{{ old('brand') }}"
+        <input type="text" name="brand" id="brand"
             class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none" required>
     </div>
 
     <!-- Price Input -->
     <div class="flex flex-col">
         <label for="price" class="text-sm font-semibold text-gray-700 mb-2">Price</label>
-        <input type="number" name="price" id="price" value="{{ old('price') }}"
+        <input type="number" name="price" id="price"
             class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none" required aria-describedby="price-description">
     </div>
 
     <!-- Height Input -->
     <div class="flex flex-col">
         <label for="height" class="text-sm font-semibold text-gray-700 mb-2">Height (cm)</label>
-        <input type="number" name="height" id="height" value="{{ old('height') }}"
+        <input type="number" name="height" id="height"
             class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none" required>
     </div>
 
     <!-- Width Input -->
     <div class="flex flex-col">
         <label for="width" class="text-sm font-semibold text-gray-700 mb-2">Width (cm)</label>
-        <input type="number" name="width" id="width" value="{{ old('width') }}"
+        <input type="number" name="width" id="width"
             class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none" required>
     </div>
 
     <!-- Depth Input -->
     <div class="flex flex-col">
         <label for="depth" class="text-sm font-semibold text-gray-700 mb-2">Depth (cm)</label>
-        <input type="number" name="depth" id="depth" value="{{ old('depth') }}"
+        <input type="number" name="depth" id="depth"
             class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none" required>
     </div>
 
     <!-- Weight Input -->
     <div class="flex flex-col">
         <label for="weight" class="text-sm font-semibold text-gray-700 mb-2">Weight (kg)</label>
-        <input type="number" name="weight" id="weight" value="{{ old('weight') }}"
+        <input type="number" name="weight" id="weight"
             class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none" required>
     </div>
 
     <!-- Material Input -->
     <div class="flex flex-col">
         <label for="material" class="text-sm font-semibold text-gray-700 mb-2">Material</label>
-        <input type="text" name="material" id="material" value="{{ old('material') }}"
+        <input type="text" name="material" id="material"
             class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none" required>
     </div>
 
     <!-- Colour Input -->
     <div class="flex flex-col">
         <label for="colour" class="text-sm font-semibold text-gray-700 mb-2">Colour</label>
-        <input type="text" name="colour" id="colour" value="{{ old('colour') }}"
+        <input type="text" name="colour" id="colour"
             class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none" required>
     </div>
 
