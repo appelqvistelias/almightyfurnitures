@@ -31,7 +31,8 @@
                         <img
                             src="{{ Storage::url($product->image) }}"
                             alt="{{ $product->name }}"
-                            class="rounded-lg w-full max-w-md h-64 object-cover shadow-lg"
+                            class="rounded-lg w-full max-w-2xl h-auto object-contain shadow-lg"
+                            loading="lazy"
                             aria-hidden="true">
                     </div>
                     @endif
