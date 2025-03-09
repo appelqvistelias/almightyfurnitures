@@ -23,6 +23,7 @@ class SaveProductRequest extends FormRequest
     {
         return [
             'name' => 'required|max:100',
+            'category_id' => 'required|exists:categories,id',
             'description' => 'nullable|min:10',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'brand' => 'required|max:100',
