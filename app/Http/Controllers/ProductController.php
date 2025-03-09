@@ -14,7 +14,7 @@ class ProductController extends Controller
         return view('admin.products.index', [
             'products' => Product::with('category')
                 ->orderBy('created_at')
-                ->paginate(6)
+                ->paginate(4)
         ]);
     }
 

@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $products = Product::orderBy('created_at')->paginate(6);
+        $products = Product::orderBy('created_at')->paginate(4);
         return view('home', compact('products'));
     }
 
