@@ -31,6 +31,11 @@
                                 {{ $product->name }}
                             </h2>
 
+                            <!-- Product Category -->
+                            @if($product->category)
+                            <p class="text-gray-600">{{ $product->category->name }}</p>
+                            @endif
+
                             <!-- Product Description -->
                             <p class="text-gray-700 mb-2">{{ \Str::limit($product->description, 100) }}</p>
 
