@@ -9,7 +9,13 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Product::orderBy('created_at')->paginate(4);
         return view('home', compact('products'));
+    }
+
+    public function showProductDetails($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('product-details', compact('product'));
     }
 }

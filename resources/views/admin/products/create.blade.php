@@ -13,7 +13,7 @@
 
                     <x-errors />
 
-                    <x-products.create-form />
+                    <x-products.create-form :categories="$categories" />
                 </div>
             </div>
         </div>
