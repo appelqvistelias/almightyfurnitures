@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Middleware\AdminMiddleware;
-use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -27,13 +26,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::middleware([AdminMiddleware::class])->prefix('admin')->group(function () {
-        Route::get('/products', [AdminProductController::class, 'index'])->name('admin.products.index');
-        Route::get('/products/create', [AdminProductController::class, 'create'])->name('admin.products.create');
-        Route::post('/products', [AdminProductController::class, 'store'])->name('admin.products.store');
-        Route::get('/products/{product}', [AdminProductController::class, 'show'])->name('admin.products.show');
-        Route::get('/products/{product}/edit', [AdminProductController::class, 'edit'])->name('admin.products.edit');
-        Route::patch('/products/{product}', [AdminProductController::class, 'update'])->name('admin.products.update');
-        Route::delete('/products/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
+        Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
+        Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create');
+        Route::post('/products', [ProductController::class, 'store'])->name('admin.products.store');
+        Route::get('/products/{product}', [ProductController::class, 'show'])->name('admin.products.show');
+        Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
+        Route::patch('/products/{product}', [ProductController::class, 'update'])->name('admin.products.update');
+        Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
     });
 });
 
