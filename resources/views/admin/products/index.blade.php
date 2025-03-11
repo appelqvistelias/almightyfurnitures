@@ -16,47 +16,51 @@
                         </a>
                     </div>
 
+                    <!-- Filter Form -->
+                    <form method="GET" action="{{ route('admin.products.index') }}" class="mb-6">
+                        <select name="category" onchange="this.form.submit()" class="border p-2 rounded">
+                            <option value="">All Categories</option>
+                            @foreach($categories as $category)
+                            <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
+                                {{ $category->name }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </form>
+
+                    @if ($products->isEmpty())
+                    <p class="text-gray-500 text-center">No products available at the moment.</p>
+                    @else
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         @foreach ($products as $product)
                         <div class="p-4 border rounded-lg shadow-sm bg-gray-50 hover:shadow-lg transition duration-300">
-                            <!-- Product Image -->
                             @if ($product->image)
                             <div class="mb-4">
                                 <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" class="w-full h-48 object-cover rounded-lg">
                             </div>
                             @endif
 
-                            <!-- Product Name -->
-                            <h2 class="text-lg font-semibold text-gray-900">
-                                {{ $product->name }}
-                            </h2>
+                            <h2 class="text-lg font-semibold text-gray-900">{{ $product->name }}</h2>
 
-                            <!-- Product Category -->
                             @if($product->category)
                             <p class="text-gray-600">{{ $product->category->name }}</p>
                             @endif
 
-                            <!-- Product Description -->
                             <p class="text-gray-700 mb-2">{{ \Str::limit($product->description, 100) }}</p>
 
-                            <!-- Product Size -->
                             @if ($product->size)
                             <p class="text-gray-600"><strong>Size:</strong> {{ $product->size }}</p>
                             @endif
 
-                            <!-- Product Price -->
                             @if ($product->price)
                             <p class="text-gray-900 font-semibold text-lg mt-2">{{ number_format($product->price, 2) }} SEK</p>
                             @endif
 
-                            <!-- Buttons -->
                             <div class="mt-4 flex space-x-2">
-                                <!-- More Info Button -->
                                 <a href="{{ route('admin.products.show', $product->id) }}" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
                                     More Info
                                 </a>
 
-                                <!-- Delete Button -->
                                 <form method="POST" action="{{ route('admin.products.destroy', $product->id) }}" class="inline">
                                     @csrf
                                     @method('DELETE')
@@ -71,6 +75,7 @@
                         </div>
                         @endforeach
                     </div>
+                    @endif
 
                     <div class="mt-6">
                         {{ $products->links('vendor/pagination/simple-default') }}
