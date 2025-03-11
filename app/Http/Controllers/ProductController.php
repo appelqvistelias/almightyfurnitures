@@ -6,16 +6,23 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Http\Requests\SaveProductRequest;
 use App\Models\Category;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.products.index', [
-            'products' => Product::with('category')
-                ->orderBy('created_at')
-                ->paginate(4)
-        ]);
+        $categories = Category::all();
+
+        $products = QueryBuilder::for(Product::class)
+            ->with('category')
+            ->when($request->category, function ($query, $category) {
+                return $query->where('category_id', $category);
+            })
+            ->orderBy('created_at')
+            ->paginate(4);
+
+        return view('admin.products.index', compact('products', 'categories'));
     }
 
     public function create()
