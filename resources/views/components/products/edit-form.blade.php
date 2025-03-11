@@ -25,7 +25,6 @@
         </select>
     </div>
 
-
     <!-- Description Textarea -->
     <div class="flex flex-col">
         <label for="description" class="text-sm font-semibold text-gray-700 mb-2">Description</label>

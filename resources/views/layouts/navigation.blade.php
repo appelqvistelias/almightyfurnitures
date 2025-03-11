@@ -1,15 +1,14 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
-    <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <!-- Logo -->
             <div class="flex items-center">
                 <a href="{{ route('home') }}" class="shrink-0">
-                    <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                    <x-application-logo class="block h-9 w-auto" />
                 </a>
             </div>
 
-            <!-- Navigation Links (to the right of the logo) -->
+            <!-- Navigation Links -->
             <div class="hidden sm:flex sm:items-center sm:space-x-8 sm:ms-10">
                 <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                     {{ __('Home') }}
@@ -51,7 +50,7 @@
                 </button>
             </div>
 
-            <!-- Settings Dropdown (far right) -->
+            <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 @auth
                 <x-dropdown align="right" width="48">
