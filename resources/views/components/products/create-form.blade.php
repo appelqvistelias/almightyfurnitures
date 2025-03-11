@@ -1,4 +1,4 @@
-<form method="post" action="{{ route('products.store') }}" class="space-y-6" enctype="multipart/form-data" aria-labelledby="form-title">
+<form method="post" action="{{ route('admin.products.store') }}" class="space-y-6" enctype="multipart/form-data" aria-labelledby="form-title">
     @csrf
     <h2 id="form-title" class="sr-only">New Product Form</h2>
 
@@ -94,7 +94,7 @@
 
     <!-- Save and Cancel Button -->
     <div class="mt-4 flex justify-end space-x-4">
-        <a href="{{ route('products.index') }}" class="px-6 py-3 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 flex items-center justify-center" aria-label="Cancel and go back">
+        <a href="{{ route('admin.products.index') }}" class="px-6 py-3 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 flex items-center justify-center" aria-label="Cancel and go back">
             Cancel
         </a>
         <button type="submit" class="px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 flex items-center justify-center">

@@ -12,7 +12,7 @@
                     <!-- Back Button -->
                     <div class="flex justify-start mb-6">
                         <a
-                            href="{{ route('products.index') }}"
+                            href="{{ route('admin.products.index') }}"
                             class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 flex items-center space-x-2 transition duration-300"
                             aria-label="Back to products">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
@@ -95,14 +95,14 @@
                     <div class="flex justify-start space-x-4">
                         <!-- Edit Button -->
                         <a
-                            href="{{ route('products.edit', $product->id) }}"
+                            href="{{ route('admin.products.edit', $product->id) }}"
                             class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex items-center space-x-2 transition duration-300"
                             aria-label="Edit {{ $product->name }}">
                             <span>Edit</span>
                         </a>
 
                         <!-- Delete Button -->
-                        <form method="post" action="{{ route('products.destroy', $product) }}">
+                        <form method="post" action="{{ route('admin.products.destroy', $product) }}">
                             @csrf
                             @method('DELETE')
                             <button
