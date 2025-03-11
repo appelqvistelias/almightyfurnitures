@@ -56,11 +56,6 @@
                             <!-- Product Description -->
                             <p class="text-gray-700 mb-2">{{ \Str::limit($product->description, 100) }}</p>
 
-                            <!-- Product Size -->
-                            @if ($product->size)
-                            <p class="text-gray-600"><strong>Size:</strong> {{ $product->size }}</p>
-                            @endif
-
                             <!-- Product Price -->
                             @if ($product->price)
                             <p class="text-gray-900 font-semibold text-lg mt-2">{{ number_format($product->price, 2) }} SEK</p>
