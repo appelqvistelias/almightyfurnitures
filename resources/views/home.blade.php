@@ -14,6 +14,18 @@
                         <h2 class="text-2xl font-bold">Our furnitures</h2>
                     </header>
 
+                    <!-- Filter by Category -->
+                    <form method="GET" action="{{ route('home') }}" class="mb-6">
+                        <select name="category" onchange="this.form.submit()" class="border p-2 rounded">
+                            <option value="">All Categories</option>
+                            @foreach($categories as $category)
+                            <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
+                                {{ $category->name }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </form>
+
                     @if ($products->isEmpty())
                     <p class="text-gray-500 text-center">No products available at the moment.</p>
                     @else
