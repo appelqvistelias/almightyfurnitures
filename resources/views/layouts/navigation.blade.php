@@ -16,9 +16,11 @@
                 </x-nav-link>
 
                 @auth
-                <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
+                @if(Auth::user()->is_admin)
+                <x-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.index')">
                     {{ __('Dashboard') }}
                 </x-nav-link>
+                @endif
                 @endauth
             </div>
 
@@ -95,9 +97,11 @@
             </x-responsive-nav-link>
 
             @auth
-            <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
+            @if(Auth::user()->is_admin)
+            <x-nav-link :href="route('admin.products.index')" :active="request()->routeIs('admin.products.index')">
                 {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+            </x-nav-link>
+            @endif
             @endauth
         </div>
 
