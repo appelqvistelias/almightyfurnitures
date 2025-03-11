@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-between items-center mb-6">
                         <h1 class="text-2xl font-bold">Products</h1>
-                        <a href="{{ route('products.create') }}" class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">
+                        <a href="{{ route('admin.products.create') }}" class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600">
                             New Product
                         </a>
                     </div>
@@ -52,12 +52,12 @@
                             <!-- Buttons -->
                             <div class="mt-4 flex space-x-2">
                                 <!-- More Info Button -->
-                                <a href="{{ route('products.show', $product->id) }}" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
+                                <a href="{{ route('admin.products.show', $product->id) }}" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
                                     More Info
                                 </a>
 
                                 <!-- Delete Button -->
-                                <form method="POST" action="{{ route('products.destroy', $product->id) }}" class="inline">
+                                <form method="POST" action="{{ route('admin.products.destroy', $product->id) }}" class="inline">
                                     @csrf
                                     @method('DELETE')
                                     <button
