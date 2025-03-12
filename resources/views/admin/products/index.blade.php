@@ -48,9 +48,7 @@
 
                             <p class="text-gray-700 mb-2">{{ \Str::limit($product->description, 100) }}</p>
 
-                            @if ($product->price)
                             <p class="text-gray-900 font-semibold text-lg mt-2">{{ number_format($product->price, 2) }} SEK</p>
-                            @endif
 
                             <div class="mt-4 flex space-x-2">
                                 <a href="{{ route('admin.products.show', $product->id) }}" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
